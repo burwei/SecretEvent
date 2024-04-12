@@ -26,6 +26,6 @@ contract EventsManagerTest is Test {
     function testRandomness() public {
         uint firstRandom = eventsManager.random();
         uint secondRandom = eventsManager.random();
-        assertNe(firstRandom, secondRandom);
+        assertTrue(firstRandom != secondRandom, "Random numbers should not be equal");
     }
 }
