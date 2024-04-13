@@ -150,12 +150,12 @@ const CreatePropositionDialog = ({ open, onClose, setSuccess }) => {
       },
     }}>
 
-      <DialogTitle sx={{ fontSize: '1em' }} color="black"> Enter your Invitation Code</DialogTitle>
+      <DialogTitle sx={{ fontSize: '1em' }} color="black"> Create Your Events</DialogTitle>
       <DialogContent>
         {page === 1 &&
           <>
             <div className='step1'>
-              <h4 style={h4Style}>🤔️ #Choose the Proposition Category</h4>
+              <h4 style={h4Style}>🤔️ #Choose the Event Category</h4>
               <div style={{ display: 'flex', width: '80%', margin: '0 auto' }}>
                 {images.map((image, index) => (
                   <div key={index} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', margin: '0 0.2rem' }}>
@@ -170,10 +170,18 @@ const CreatePropositionDialog = ({ open, onClose, setSuccess }) => {
               </div>
             </div>
 
-           
+            <div className='step2' style={{ alignItems: 'center', display: 'flex', flexDirection: 'column' }}>
+              <h4 style={h4Style}>🔐 #Is a Private or Public Event? </h4>
+              <ButtonGroup color='success' variant="contained">
+                <Button style={{ backgroundColor: '#5f9ff8', color: '#fff', boxShadow: activeButton === '1' ? 'inset 6px 6px 6px rgba(0, 0, 0, 0.5)' : 'none' }}
+                  onClick={() => setActiveButton('1')}>Private</Button>
+                <Button style={{ backgroundColor: '#5f9ff8', color: '#fff', boxShadow: activeButton === '2' ? 'inset 6px 6px 6px rgba(0, 0, 0, 0.5)' : 'none' }}
+                  onClick={() => setActiveButton('2')}>Public</Button>
+              </ButtonGroup>
+            </div>
 
             <div className='step3' style={{ alignItems: 'center', display: 'flex', flexDirection: 'column', marginTop: '1em' }}>
-              <h4 style={h4Style}>📅  #When will this Proposition be? </h4>
+              <h4 style={h4Style}>📅  #When will this Event be? </h4>
               <DateTimePickerComponent />
             </div>
 
@@ -187,7 +195,7 @@ const CreatePropositionDialog = ({ open, onClose, setSuccess }) => {
 
               <div className='image-title' style={{ display: 'flex', marginTop: '-10px' }}>
                 <div style={{ width: '80%', fontSize: '14px', marginRight: '5px' }}>
-                  <p style={{ marginBottom: '15px' }}>Proposition Title</p>
+                  <p style={{ marginBottom: '15px' }}>Event Title</p>
                   <TextField fullWidth color='success' size='small' value={text} onChange={handleInputText} placeholder='Title'
                     inputProps={{ maxLength: 100, }} helperText={`${text.length} / 100 characters`}
                   />
@@ -235,15 +243,12 @@ const CreatePropositionDialog = ({ open, onClose, setSuccess }) => {
             </ClickAwayListener>
 
             <div className='description' style={{ fontSize: '14px', margin: '20px 0px 0px' }}>
-              <p style={{ marginBottom: '1px' }}>Proposition Description</p>
+              <p style={{ marginBottom: '1px' }}>Event Description</p>
               <TextField fullWidth multiline rows={3.5} color='success' placeholder="This proposition is about ... " />
             </div>
           </>
         }
       </DialogContent>
-
-
-
       <DialogActions>
         <Button size='small' onClick={close} style={{ color: '#5f9ff8', fontWeight: 'bold' }}>Cancel</Button>
         {page === 1 && <Button size='small' onClick={next} style={{ color: '#5f9ff8', fontWeight: 'bold' }}>Next</Button>}

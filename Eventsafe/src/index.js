@@ -26,7 +26,7 @@ const wagmiConfig = defaultWagmiConfig({ chains, projectId, metadata })
 // 3. Create modal
 createWeb3Modal({ wagmiConfig, projectId, chains })
 
-const [Home, Market, Detail, Portfolio, events] = ['Home', 'Market', 'Market/Detail', 'Portfolio','events'].map((v) => () => {
+const [Home, Market, Detail, Portfolio, Events] = ['Home', 'Market', 'Market/Detail', 'Portfolio','Events'].map((v) => () => {
   const Lazy = lazy(() => import(`@/views/${v}`))
   return <Suspense fallback={<></>} children={<Lazy />} />
 })
@@ -42,7 +42,7 @@ const Routes = () =>
         { path: 'market', element: <Market /> },
         { path: 'portfolio', element: <Portfolio /> },
         { path: 'detail', element: <Detail /> },
-        { path: 'events', element: <events/>}
+        { path: 'events', element: <Events/>}
       ],
     },
   ])
