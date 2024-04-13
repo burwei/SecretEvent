@@ -4,7 +4,8 @@ pragma solidity ^0.8.24;
 import "./SecretEvent.sol";
 
 contract EventsSearcher {
-    mapping(uint => address) inviteIdToEventAddress;
+    uint[] public storedInviteIds;
+    mapping(uint => address) internal inviteIdToEventAddress;
 
     function addInviteIdsToEventAddress(
         uint[] memory inviteIds,
@@ -12,6 +13,7 @@ contract EventsSearcher {
     ) public {
         for (uint i = 0; i < inviteIds.length; i++) {
             inviteIdToEventAddress[inviteIds[i]] = eventAddress;
+            storedInviteIds.push(inviteIds[i]);
         }
     }
 

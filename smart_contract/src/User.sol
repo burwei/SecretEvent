@@ -16,10 +16,17 @@ struct MyOwnEvent {
     string eventName;
 }
 
+interface EventsSearcherInterface {
+    function addInviteIdsToEventAddress(uint[] memory inviteIds, address eventAddress) external;
+}
+
+interface SecretEventInterface {
+    function getInviteIds() external view returns (uint[] memory);
+}
+
 contract User {
     address internal owner;
     address internal eventSearcherAddr;
-    uint[] internal inviteIds;
     Ticket[] internal tickets;
     MyOwnEvent[] internal myOwnEvent;
 
@@ -47,18 +54,18 @@ contract User {
         return tickets;
     }
 
-    function getInvites() public view returns (uint[] memory) {
-        if (owner != msg.sender) {
-            return new uint[](0);
-        }
-        return inviteIds;
-    }
-
     function addMyOwnEvent(MyOwnEvent memory _myOwnEvent) public {
         if (owner != msg.sender) {
-            return;
+            revert("Only owner can add my own event");
         }
         myOwnEvent.push(_myOwnEvent);
+    }
+
+    function getMyOwnEvent() public view returns (MyOwnEvent[] memory) {
+        if (owner != msg.sender) {
+            revert("Only owner can get my own event");
+        }
+        return myOwnEvent;
     }
 
     function createEvent(
@@ -66,9 +73,12 @@ contract User {
     ) public returns (address) {
         SecretEvent newEvent = new SecretEvent(
             _eventDetails,
-            owner,
-            eventSearcherAddr
+            owner
         );
+
+        EventsSearcherInterface eventsSearcher = EventsSearcherInterface(eventSearcherAddr);
+        uint[] memory inviteIds = newEvent.getInviteIds();
+        eventsSearcher.addInviteIdsToEventAddress(inviteIds, address(newEvent));
         return address(newEvent);
     }
 }

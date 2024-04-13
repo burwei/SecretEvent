@@ -3,6 +3,7 @@ pragma solidity ^0.8.24;
 
 import "./EventsSearcher.sol";
 
+
 struct EventDetails {
     uint eventStartTime;
     uint ticketPrice;
@@ -33,18 +34,14 @@ contract SecretEvent {
 
     constructor(
         EventDetails memory _eventDetails,
-        address orginizer,
-        address eventsSearcherAddr
+        address _orginizer
     ) {
         eventDetails = _eventDetails;
-        owner = orginizer;
+        owner = _orginizer;
 
         for (uint i = 0; i < _eventDetails.invitationAmount; i++) {
             inviteIds.push(random());
         }
-
-        EventsSearcher eventsSearcher = EventsSearcher(eventsSearcherAddr);
-        eventsSearcher.addInviteIdsToEventAddress(inviteIds, address(this));
     }
 
     function getInviteIds() public view returns (uint[] memory) {
