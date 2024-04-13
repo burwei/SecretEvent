@@ -18,12 +18,14 @@ struct MyOwnEvent {
 
 contract User {
     address internal owner;
+    address internal eventSearcherAddr;
     uint[] internal inviteIds;
     Ticket[] internal tickets;
     MyOwnEvent[] internal myOwnEvent;
 
-    constructor() {
-        owner = msg.sender;
+    constructor(address _owner, address _eventSearcherAddr) {
+        owner = _owner;
+        eventSearcherAddr = _eventSearcherAddr;
     }
 
     function addTicket(
@@ -62,7 +64,11 @@ contract User {
     function createEvent(
         EventDetails memory _eventDetails
     ) public returns (address) {
-        SecretEvent newEvent = new SecretEvent(_eventDetails, owner);
+        SecretEvent newEvent = new SecretEvent(
+            _eventDetails,
+            owner,
+            eventSearcherAddr
+        );
         return address(newEvent);
     }
 }
