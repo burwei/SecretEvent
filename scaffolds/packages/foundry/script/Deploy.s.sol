@@ -53,8 +53,7 @@ contract DeployScript is ScaffoldETHDeploy {
                     "ETHDam drinking party",
                     "Amsterdam central station"
                 ),
-                address(user),
-                address(eventSearcher)
+                address(user)
             );
         console.logString(
             string.concat(
