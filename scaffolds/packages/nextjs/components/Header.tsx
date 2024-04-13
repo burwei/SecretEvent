@@ -27,6 +27,10 @@ export const menuLinks: HeaderMenuLink[] = [
   {
     label: "Camera",
     href: "/camera",
+  },
+  {
+    label: "QrCode",
+    href: "/qrcode",
   }
 ];
 
