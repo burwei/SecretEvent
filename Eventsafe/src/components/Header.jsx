@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { Grid, Button, Divider, useMediaQuery, useTheme } from '@mui/material'
 import { walletStore, observer } from '@/store'
 import logoTitle from '@/assets/img/logoTitle.png'
-import logo from '@/assets/img/logo.svg'
+import logo from '@/assets/img/logo.png'
 import ConnectWallet from './ConnectWallet'
 
 export default observer(() => {
@@ -35,7 +35,7 @@ export default observer(() => {
           sx={{ '&:hover': { cursor: 'pointer' } }}
           onClick={() => navigate('/')}
         >
-          <img src={matchesXs ? logo : logoTitle} style={{ height: '60px', marginRight: '16px' }} />
+          <img src={matchesXs ? logo : logoTitle} style={{ height: '80px', marginRight: '16px' }} />
         </Grid>
         {!matchesXs && <Divider orientation="vertical" flexItem sx={{ mx: 2, borderColor: '#16182C' }} />}
         <Grid item container sx={{ width: 'auto', alignItems: 'center' }}>
@@ -77,8 +77,8 @@ export default observer(() => {
           <Grid item>
             <Button
               onClick={() => {
-                sessionStorage.setItem('routes', '/leaderboard')
-                navigate('/leaderboard')
+                sessionStorage.setItem('routes', '/events')
+                navigate('/events')
               }}
               sx={{
                 color: 'white',
@@ -86,30 +86,15 @@ export default observer(() => {
                 px: matchesXs ? 1 : 2,
                 mx: 1,
                 boxSizing: 'border-box',
-                borderBottom: ['leaderboard'].includes(menu) ? '4px solid #5f9ff8' : 'none',
+                borderBottom: ['events'].includes(menu) ? '4px solid #5f9ff8' : 'none',
               }}
             >
-              Redeem
+              My Events
             </Button>
           </Grid>
           {address !== 'Connect Wallet' && (
             <Grid item>
-              <Button
-                onClick={() => {
-                  sessionStorage.setItem('routes', '/portfolio')
-                  navigate('/portfolio')
-                }}
-                sx={{
-                  color: 'white',
-                  py: 0,
-                  px: matchesXs ? 1 : 2,
-                  mx: 1,
-                  boxSizing: 'border-box',
-                  borderBottom: ['portfolio'].includes(menu) ? '4px solid #5f9ff8' : 'none',
-                }}
-              >
-                Portfolio
-              </Button>
+              
             </Grid>
           )}
           <Grid item>

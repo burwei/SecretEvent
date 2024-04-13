@@ -63,13 +63,13 @@ const HomePage = () => {
           margin: '-10px',
           paddingLeft: '5%',
           paddingRight: '5%',
-          paddingBottom: '60px'
+          paddingBottom: '10px'
         }}
       >
         <Grid container style={{ color: 'white', padding: '5rem', height: '90vh' }}>
           <Grid item sm={12} md={6} sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-            <Typography variant='h1' gutterBottom sx={{ fontSize: '4rem' }}>Eventpro</Typography>
-            <Typography variant='body1' sx={{ fontSize: '1.2rem', width: '90%' }}>Prophet is a revolutionary decentralized platform that allows users to speculate on the outcome of events. Join us to harness the power of collective intelligence and earn rewards!</Typography>
+            <Typography variant='h1' gutterBottom sx={{ fontSize: '4rem' }}>Eventsafe</Typography>
+            <Typography variant='body1' sx={{ fontSize: '1.2rem', width: '90%' }}>Eventsafe is a ticketing platform dedicated to privacy protection, committed to providing users with a safe and confidential ticket purchasing and trading experience. </Typography>
             <ExploreButton onClick={() => { sessionStorage.setItem('routes', '/market'); navigate('/market') }} />
           </Grid>
           <Grid item sm={6} sx={{ display: { xs: 'none', md: 'flex' }, justifyContent: 'flex-end', alignItems: 'center' }}>

@@ -1,5 +1,5 @@
 import { Modal, Grid, Container, Box, styled, Backdrop } from '@mui/material'
-import logo from '@/assets/img/logo.svg'
+import logo from '@/assets/img/logo.png'
 
 export default ({ open, setOpen, title, children }) => {
   const backdrop = styled(Backdrop)({ backgroundColor: 'rgba(0,0,0,0.75)' })
