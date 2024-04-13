@@ -4,6 +4,610 @@
  */
 import { GenericContractsDeclaration } from "~~/utils/scaffold-eth/contract";
 
-const deployedContracts = {} as const;
+const deployedContracts = {
+  31337: {
+    YourContract: {
+      address: "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+      abi: [
+        {
+          type: "constructor",
+          inputs: [
+            {
+              name: "_owner",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "receive",
+          stateMutability: "payable",
+        },
+        {
+          type: "function",
+          name: "greeting",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "string",
+              internalType: "string",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "owner",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "premium",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "bool",
+              internalType: "bool",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "setGreeting",
+          inputs: [
+            {
+              name: "_newGreeting",
+              type: "string",
+              internalType: "string",
+            },
+          ],
+          outputs: [],
+          stateMutability: "payable",
+        },
+        {
+          type: "function",
+          name: "totalCounter",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "userGreetingCounter",
+          inputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "withdraw",
+          inputs: [],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "event",
+          name: "GreetingChange",
+          inputs: [
+            {
+              name: "greetingSetter",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+            {
+              name: "newGreeting",
+              type: "string",
+              indexed: false,
+              internalType: "string",
+            },
+            {
+              name: "premium",
+              type: "bool",
+              indexed: false,
+              internalType: "bool",
+            },
+            {
+              name: "value",
+              type: "uint256",
+              indexed: false,
+              internalType: "uint256",
+            },
+          ],
+          anonymous: false,
+        },
+      ],
+      inheritedFunctions: {},
+    },
+    EventsSearcher: {
+      address: "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512",
+      abi: [
+        {
+          type: "function",
+          name: "addInviteIdsToEventAddress",
+          inputs: [
+            {
+              name: "inviteIds",
+              type: "uint256[]",
+              internalType: "uint256[]",
+            },
+            {
+              name: "eventAddress",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "getEventAddressFromInvite",
+          inputs: [
+            {
+              name: "inviteId",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          stateMutability: "view",
+        },
+      ],
+      inheritedFunctions: {},
+    },
+    User: {
+      address: "0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0",
+      abi: [
+        {
+          type: "constructor",
+          inputs: [
+            {
+              name: "_owner",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "_eventSearcherAddr",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "addMyOwnEvent",
+          inputs: [
+            {
+              name: "_myOwnEvent",
+              type: "tuple",
+              internalType: "struct MyOwnEvent",
+              components: [
+                {
+                  name: "eventAddress",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "eventStartTime",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "eventName",
+                  type: "string",
+                  internalType: "string",
+                },
+              ],
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "addTicket",
+          inputs: [
+            {
+              name: "eventAddress",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "ticketId",
+              type: "uint256",
+              internalType: "uint256",
+            },
+            {
+              name: "eventStartTime",
+              type: "uint256",
+              internalType: "uint256",
+            },
+            {
+              name: "eventName",
+              type: "string",
+              internalType: "string",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "createEvent",
+          inputs: [
+            {
+              name: "_eventDetails",
+              type: "tuple",
+              internalType: "struct EventDetails",
+              components: [
+                {
+                  name: "eventStartTime",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "ticketPrice",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "depositReleaseTime",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "depositAmount",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "invitationAmount",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "eventName",
+                  type: "string",
+                  internalType: "string",
+                },
+                {
+                  name: "eventLocation",
+                  type: "string",
+                  internalType: "string",
+                },
+              ],
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "getInvites",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint256[]",
+              internalType: "uint256[]",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "getTickets",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "tuple[]",
+              internalType: "struct Ticket[]",
+              components: [
+                {
+                  name: "eventAddress",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "ticketId",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "eventStartTime",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "eventName",
+                  type: "string",
+                  internalType: "string",
+                },
+              ],
+            },
+          ],
+          stateMutability: "view",
+        },
+      ],
+      inheritedFunctions: {},
+    },
+    SecretEvent: {
+      address: "0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9",
+      abi: [
+        {
+          type: "constructor",
+          inputs: [
+            {
+              name: "_eventDetails",
+              type: "tuple",
+              internalType: "struct EventDetails",
+              components: [
+                {
+                  name: "eventStartTime",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "ticketPrice",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "depositReleaseTime",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "depositAmount",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "invitationAmount",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "eventName",
+                  type: "string",
+                  internalType: "string",
+                },
+                {
+                  name: "eventLocation",
+                  type: "string",
+                  internalType: "string",
+                },
+              ],
+            },
+            {
+              name: "orginizer",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "eventsSearcherAddr",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "buyTikcet",
+          inputs: [
+            {
+              name: "picEncodingURL",
+              type: "string",
+              internalType: "string",
+            },
+          ],
+          outputs: [],
+          stateMutability: "payable",
+        },
+        {
+          type: "function",
+          name: "eventDetails",
+          inputs: [],
+          outputs: [
+            {
+              name: "eventStartTime",
+              type: "uint256",
+              internalType: "uint256",
+            },
+            {
+              name: "ticketPrice",
+              type: "uint256",
+              internalType: "uint256",
+            },
+            {
+              name: "depositReleaseTime",
+              type: "uint256",
+              internalType: "uint256",
+            },
+            {
+              name: "depositAmount",
+              type: "uint256",
+              internalType: "uint256",
+            },
+            {
+              name: "invitationAmount",
+              type: "uint256",
+              internalType: "uint256",
+            },
+            {
+              name: "eventName",
+              type: "string",
+              internalType: "string",
+            },
+            {
+              name: "eventLocation",
+              type: "string",
+              internalType: "string",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "getInviteIds",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint256[]",
+              internalType: "uint256[]",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "getTicketNum",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "random",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "redeemDeposit",
+          inputs: [
+            {
+              name: "ticketId",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "seizeDeposit",
+          inputs: [
+            {
+              name: "ticketId",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "verifyTicket",
+          inputs: [
+            {
+              name: "ticketId",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "tuple",
+              internalType: "struct TicketVerification",
+              components: [
+                {
+                  name: "eventName",
+                  type: "string",
+                  internalType: "string",
+                },
+                {
+                  name: "eventStartTime",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "ticketId",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "eventLocation",
+                  type: "string",
+                  internalType: "string",
+                },
+                {
+                  name: "isVerified",
+                  type: "bool",
+                  internalType: "bool",
+                },
+              ],
+            },
+          ],
+          stateMutability: "view",
+        },
+      ],
+      inheritedFunctions: {},
+    },
+  },
+} as const;
 
 export default deployedContracts satisfies GenericContractsDeclaration;

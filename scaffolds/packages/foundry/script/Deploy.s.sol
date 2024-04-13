@@ -2,6 +2,9 @@
 pragma solidity ^0.8.19;
 
 import "../contracts/YourContract.sol";
+import "../contracts/EventsSearcher.sol";
+import "../contracts/SecretEvent.sol";
+import "../contracts/User.sol";
 import "./DeployHelpers.s.sol";
 
 contract DeployScript is ScaffoldETHDeploy {
@@ -22,6 +25,43 @@ contract DeployScript is ScaffoldETHDeploy {
                 "YourContract deployed at: ", vm.toString(address(yourContract))
             )
         );
+        EventsSearcher eventSearcher =
+            new EventsSearcher();
+        console.logString(
+            string.concat(
+                "EventsSearcher deployed at: ", vm.toString(address(eventSearcher))
+            )
+        );
+        User user =
+            new User(
+                vm.addr(deployerPrivateKey),
+                address(eventSearcher)
+            );
+        console.logString(
+            string.concat(
+                "User deployed at: ", vm.toString(address(user))
+            )
+        ); 
+        SecretEvent secretEvent =
+            new SecretEvent(
+                EventDetails(
+                    1744636453,
+                    100,
+                    1744722853,
+                    50,
+                    25,
+                    "ETHDam drinking party",
+                    "Amsterdam central station"
+                ),
+                address(user),
+                address(eventSearcher)
+            );
+        console.logString(
+            string.concat(
+                "SecretEvent deployed at: ", vm.toString(address(secretEvent))
+            )
+        );
+        
         vm.stopBroadcast();
 
         /**
