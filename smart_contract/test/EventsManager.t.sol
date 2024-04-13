@@ -18,9 +18,9 @@ contract EventsManagerTest is Test {
 
     function testAddTicketToEvent() public {
         uint eventId = eventsManager.createEvent(1659981910, 1 ether, 5);
-        uint ticketHash = uint(keccak256(abi.encodePacked("ticket1")));
-        eventsManager.addTicketToEvent(eventId, ticketHash);
-        assertEq(eventsManager.getEventIdFromTicket(ticketHash), eventId);
+        uint Ticket = uint(keccak256(abi.encodePacked("ticket1")));
+        eventsManager.addTicketToEvent(eventId, Ticket);
+        assertEq(eventsManager.getEventIdFromTicket(Ticket), eventId);
     }
 
     function testRandomness() public {

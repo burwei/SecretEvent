@@ -1,31 +1,43 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.24;
 
-contract SecretEvent {
+struct EventDetails {
+    uint eventStartTime;
+    uint ticketPrice;
     uint depositReleaseTime;
     uint depositAmount;
-    uint[] ticketHashes;
-    mapping(uint => address) attenders;
-    mapping(uint => uint) deposits;
+    uint invitationAmount;
+    string eventName;
+    string eventLocation;
+}
 
-    constructor(uint _depositReleaseTime, uint _depositAmount) {
-        depositReleaseTime = _depositReleaseTime;
-        depositAmount = _depositAmount;
+contract SecretEvent {
+    EventDetails public eventDetails;
+    uint[] internal inviteIds;
+    mapping(uint => address) internal ticketIdToAttendee;
+    mapping(uint => uint) internal ticketIdToDiposit;
+
+    constructor(EventDetails memory _eventDetails) {
+        eventDetails = _eventDetails;
     }
 
-    function buyTikcet(string memory picURL) public payable{
+    function getInviteIds() public view returns (uint[] memory) {
+        return inviteIds;
+    }
+
+    function buyTikcet(string memory picURL) public payable {
         // TODO: implement it
     }
 
-    function verifyTicket(uint ticketHash) public returns (bool){
+    function verifyTicket(uint Ticket) public returns (bool) {
         // TODO: implement it
     }
 
-    function redeemDeposit(uint ticketHash) public {
+    function redeemDeposit(uint Ticket) public {
         // TODO: implement it
     }
 
-    function seizeDeposit(uint ticketHash) public {
+    function seizeDeposit(uint Ticket) public {
         // TODO: implement it
     }
 }
