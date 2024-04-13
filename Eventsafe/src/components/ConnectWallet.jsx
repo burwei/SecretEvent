@@ -1,7 +1,8 @@
 import { useAccount } from 'wagmi';
+import connectWallet from '../api/walletAndContract';
 
 export default function ConnectButton() {
-  const { isDisconnected } = useAccount();
+  provider = connectWallet();
 
   return (
     <div>
