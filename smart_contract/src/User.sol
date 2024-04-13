@@ -17,11 +17,14 @@ struct MyOwnEvent {
 }
 
 contract User {
-    uint nonce = 0;
     address internal owner;
     uint[] internal inviteIds;
     Ticket[] internal tickets;
     MyOwnEvent[] internal myOwnEvent;
+
+    constructor() {
+        owner = msg.sender;
+    }
 
     function addTicket(
         address eventAddress,
@@ -59,20 +62,7 @@ contract User {
     function createEvent(
         EventDetails memory _eventDetails
     ) public returns (address) {
-        SecretEvent newEvent = new SecretEvent(_eventDetails);
-
-        for (uint i = 0; i < _eventDetails.invitationAmount; i++) {
-            inviteIdToEventAddress[random()] = address(newEvent);
-        }
-
+        SecretEvent newEvent = new SecretEvent(_eventDetails, owner);
         return address(newEvent);
-    }
-
-    function random() public returns (uint) {
-        nonce++;
-        return
-            uint(
-                keccak256(abi.encodePacked(block.timestamp, msg.sender, nonce))
-            );
     }
 }
