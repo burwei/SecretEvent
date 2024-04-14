@@ -3,9 +3,10 @@ pragma solidity ^0.8.24;
 
 import "sapphire-paratime/contracts/contracts/Sapphire.sol";
 import "./SecretEvent.sol";
+import "./User.sol";
 
 contract EventsSearcher {
-    uint[] public storedInviteIds;
+    uint[] internal storedInviteIds;
     mapping(uint => address) internal inviteIdToEventAddress;
 
     function addInviteIdsToEventAddress(
@@ -16,11 +17,7 @@ contract EventsSearcher {
             inviteIdToEventAddress[inviteIds[i]] = eventAddress;
             storedInviteIds.push(inviteIds[i]);
         }
-    }
-
-    function getFirstStoredInviteId() public view returns (uint) {
-        return storedInviteIds[0];
-    }
+    } 
 
     function getStoredInviteIds() public view returns (uint[] memory) {
         return storedInviteIds;
@@ -30,5 +27,26 @@ contract EventsSearcher {
         uint inviteId
     ) public view returns (address) {
         return inviteIdToEventAddress[inviteId];
+    }
+
+    function getEventDetails(address eventAddress) public view returns (EventDetails memory) {
+        SecretEventInterface secretEvent = SecretEventInterface(eventAddress);
+        return secretEvent.getEventDetails();
+    }
+
+    function buyTicket(
+        address eventAddress,
+        string memory picEncodingURL
+    ) public payable {
+        SecretEventInterface secretEvent = SecretEventInterface(eventAddress);
+        secretEvent.buyTikcet(picEncodingURL);
+    }
+
+    function verifyTicket(
+        address eventAddress,
+        uint ticketId
+    ) public view returns (TicketVerification memory) {
+        SecretEventInterface secretEvent = SecretEventInterface(eventAddress);
+        return secretEvent.verifyTicket(ticketId);
     }
 }

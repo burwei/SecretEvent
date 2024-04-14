@@ -172,6 +172,24 @@ const deployedContracts = {
         },
         {
           type: "function",
+          name: "buyTicket",
+          inputs: [
+            {
+              name: "eventAddress",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "picEncodingURL",
+              type: "string",
+              internalType: "string",
+            },
+          ],
+          outputs: [],
+          stateMutability: "payable",
+        },
+        {
+          type: "function",
           name: "getEventAddressFromInvite",
           inputs: [
             {
@@ -191,13 +209,56 @@ const deployedContracts = {
         },
         {
           type: "function",
-          name: "getFirstStoredInviteId",
-          inputs: [],
+          name: "getEventDetails",
+          inputs: [
+            {
+              name: "eventAddress",
+              type: "address",
+              internalType: "address",
+            },
+          ],
           outputs: [
             {
               name: "",
-              type: "uint256",
-              internalType: "uint256",
+              type: "tuple",
+              internalType: "struct EventDetails",
+              components: [
+                {
+                  name: "eventStartTime",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "ticketPrice",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "depositReleaseTime",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "depositAmount",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "invitationAmount",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "eventName",
+                  type: "string",
+                  internalType: "string",
+                },
+                {
+                  name: "eventLocation",
+                  type: "string",
+                  internalType: "string",
+                },
+              ],
             },
           ],
           stateMutability: "view",
@@ -217,10 +278,15 @@ const deployedContracts = {
         },
         {
           type: "function",
-          name: "storedInviteIds",
+          name: "verifyTicket",
           inputs: [
             {
-              name: "",
+              name: "eventAddress",
+              type: "address",
+              internalType: "address",
+            },
+            {
+              name: "ticketId",
               type: "uint256",
               internalType: "uint256",
             },
@@ -228,8 +294,35 @@ const deployedContracts = {
           outputs: [
             {
               name: "",
-              type: "uint256",
-              internalType: "uint256",
+              type: "tuple",
+              internalType: "struct TicketVerification",
+              components: [
+                {
+                  name: "eventName",
+                  type: "string",
+                  internalType: "string",
+                },
+                {
+                  name: "eventStartTime",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "ticketId",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "eventLocation",
+                  type: "string",
+                  internalType: "string",
+                },
+                {
+                  name: "isVerified",
+                  type: "bool",
+                  internalType: "bool",
+                },
+              ],
             },
           ],
           stateMutability: "view",

@@ -31,7 +31,7 @@ contract SecretEvent {
     string[] internal picEncodingURLs;
     mapping(uint => address) internal ticketIdToAttendee;
     mapping(uint => bool) internal ticketIdToDepositRedeemed;
-    EventDetails public eventDetails;
+    EventDetails internal eventDetails;
 
     constructor(
         EventDetails memory _eventDetails,
@@ -43,6 +43,10 @@ contract SecretEvent {
         for (uint i = 0; i < _eventDetails.invitationAmount; i++) {
             inviteIds.push(random());
         }
+    }
+
+    function getEventDetails() public view returns (EventDetails memory) {
+        return eventDetails;
     }
 
     function getOwner() public view returns (address) {
@@ -109,7 +113,7 @@ contract SecretEvent {
         bytes32 seed = bytes32(Sapphire.randomBytes(32, " "));
         uint number = uint(
                 keccak256(abi.encodePacked(block.timestamp, msg.sender, seed))
-            ) % 100000000;
+            ) % 1000000000000;
         return number;
     }
 }

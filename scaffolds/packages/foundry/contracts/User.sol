@@ -23,6 +23,9 @@ interface EventsSearcherInterface {
 
 interface SecretEventInterface {
     function getInviteIds() external view returns (uint[] memory);
+    function getEventDetails() external view returns (EventDetails memory);
+    function buyTikcet(string memory picEncodingURL) external payable;
+    function verifyTicket(uint ticketId) external view returns (TicketVerification memory);
 }
 
 contract User {

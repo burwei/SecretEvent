@@ -67,19 +67,17 @@ contract DeployScript is ScaffoldETHDeploy {
             )
         );
 
-        address fetchedEventAddr = eventSearcher.getEventAddressFromInvite(
-            eventSearcher.getFirstStoredInviteId()
-        );
+        uint[] memory inviteIds = eventSearcher.getStoredInviteIds();
         console.logString(
             string.concat(
-                "EventsSearcher get first invite: ",
-                vm.toString(eventSearcher.getFirstStoredInviteId())
+                "EventsSearcher first stored invite: ",
+                vm.toString(inviteIds[0])
             )
         );
         console.logString(
             string.concat(
                 "EventsSearcher get eventArrd from invite: ",
-                vm.toString(fetchedEventAddr)
+                vm.toString(eventSearcher.getEventAddressFromInvite(inviteIds[0]))
             )
         );
 
