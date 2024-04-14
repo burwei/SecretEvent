@@ -7,7 +7,7 @@ import { GenericContractsDeclaration } from "~~/utils/scaffold-eth/contract";
 const deployedContracts = {
   31337: {
     YourContract: {
-      address: "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+      address: "0xc6e7DF5E7b4f2A278906862b61205850344D4e7d",
       abi: [
         {
           type: "constructor",
@@ -150,7 +150,7 @@ const deployedContracts = {
       inheritedFunctions: {},
     },
     EventsSearcher: {
-      address: "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512",
+      address: "0x59b670e9fA9D0A427751Af201D676719a970857b",
       abi: [
         {
           type: "function",
@@ -163,6 +163,19 @@ const deployedContracts = {
             },
             {
               name: "eventAddress",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          outputs: [],
+          stateMutability: "nonpayable",
+        },
+        {
+          type: "function",
+          name: "createUser",
+          inputs: [
+            {
+              name: "owner",
               type: "address",
               internalType: "address",
             },
@@ -258,11 +271,24 @@ const deployedContracts = {
           ],
           stateMutability: "view",
         },
+        {
+          type: "event",
+          name: "UserCreated",
+          inputs: [
+            {
+              name: "userAddress",
+              type: "address",
+              indexed: true,
+              internalType: "address",
+            },
+          ],
+          anonymous: false,
+        },
       ],
       inheritedFunctions: {},
     },
     User: {
-      address: "0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0",
+      address: "0x4ed7c70F96B99c776995fB64377f0d4aB3B0e1C1",
       abi: [
         {
           type: "constructor",
@@ -489,7 +515,7 @@ const deployedContracts = {
       inheritedFunctions: {},
     },
     SecretEvent: {
-      address: "0xDc64a140Aa3E981100a9becA4E685f962f0cF6C9",
+      address: "0xa85233C63b9Ee964Add6F2cffe00Fd84eb32338f",
       abi: [
         {
           type: "constructor",

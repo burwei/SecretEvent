@@ -5,6 +5,8 @@ import "sapphire-paratime/contracts/contracts/Sapphire.sol";
 import "./SecretEvent.sol";
 import "./User.sol";
 
+event UserCreated(address indexed userAddress);
+
 contract EventsSearcher {
     uint[] internal storedInviteIds;
     mapping(uint => address) internal inviteIdToEventAddress;
@@ -17,7 +19,7 @@ contract EventsSearcher {
             inviteIdToEventAddress[inviteIds[i]] = eventAddress;
             storedInviteIds.push(inviteIds[i]);
         }
-    } 
+    }
 
     function getStoredInviteIds() public view returns (uint[] memory) {
         return storedInviteIds;
@@ -29,8 +31,15 @@ contract EventsSearcher {
         return inviteIdToEventAddress[inviteId];
     }
 
-    function getEventDetails(address eventAddress) public view returns (EventDetails memory) {
+    function getEventDetails(
+        address eventAddress
+    ) public view returns (EventDetails memory) {
         SecretEventInterface secretEvent = SecretEventInterface(eventAddress);
         return secretEvent.getEventDetails();
+    }
+
+    function createUser(address owner) public {
+        User user = new User(owner, address(this));
+        emit UserCreated(address(user));
     }
 }
