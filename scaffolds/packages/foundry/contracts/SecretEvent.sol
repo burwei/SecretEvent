@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.24;
 
+import "sapphire-paratime/contracts/contracts/Sapphire.sol";
 import "./EventsSearcher.sol";
 
 
@@ -105,9 +106,10 @@ contract SecretEvent {
 
     function random() public returns (uint) {
         nonce++;
-        return
-            uint(
-                keccak256(abi.encodePacked(block.timestamp, msg.sender, nonce))
-            ) % 10000;
+        bytes32 seed = bytes32(Sapphire.randomBytes(32, " "));
+        uint number = uint(
+                keccak256(abi.encodePacked(block.timestamp, msg.sender, seed))
+            ) % 100000000;
+        return number;
     }
 }
