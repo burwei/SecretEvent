@@ -1,11 +1,10 @@
 "use client";
 
-import { set } from 'nprogress';
 import React, { useState } from 'react';
 import { useScaffoldContract } from '~~/hooks/scaffold-eth/useScaffoldContract';
 
 const SearchEventPage = () => {
-    const [searchTerm, setSearchTerm] = useState('');
+    const [inviteCode, setInviteCode] = useState('');
     const [eventName, setEventName] = useState('');
     const [eventStartTime, setEventStartTime] = useState('');
     const [eventLocation, setEventLocation] = useState('');
@@ -42,7 +41,7 @@ const SearchEventPage = () => {
     };
 
     const handleSearch = async () => {
-        let details = await getEventAddress(BigInt(searchTerm));
+        let details = await getEventAddress(BigInt(inviteCode));
         if (details === null || details === undefined) {
             console.log("Event not found");
             return;
@@ -58,8 +57,8 @@ const SearchEventPage = () => {
         <div>
             <input
                 type="text"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
+                value={inviteCode}
+                onChange={(e) => setInviteCode(e.target.value)}
                 placeholder="Enter invite code"
             />
             <button onClick={handleSearch}>Search</button>

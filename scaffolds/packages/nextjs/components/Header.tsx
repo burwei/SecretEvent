@@ -35,6 +35,10 @@ export const menuLinks: HeaderMenuLink[] = [
   {
     label: "Search Event",
     href: "/searchEvent",
+  },
+  {
+    label: "Buy Ticket",
+    href: "/buyTicket",
   }
 ];
 
