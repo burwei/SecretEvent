@@ -172,24 +172,6 @@ const deployedContracts = {
         },
         {
           type: "function",
-          name: "buyTicket",
-          inputs: [
-            {
-              name: "eventAddress",
-              type: "address",
-              internalType: "address",
-            },
-            {
-              name: "picEncodingURL",
-              type: "string",
-              internalType: "string",
-            },
-          ],
-          outputs: [],
-          stateMutability: "payable",
-        },
-        {
-          type: "function",
           name: "getEventAddressFromInvite",
           inputs: [
             {
@@ -272,57 +254,6 @@ const deployedContracts = {
               name: "",
               type: "uint256[]",
               internalType: "uint256[]",
-            },
-          ],
-          stateMutability: "view",
-        },
-        {
-          type: "function",
-          name: "verifyTicket",
-          inputs: [
-            {
-              name: "eventAddress",
-              type: "address",
-              internalType: "address",
-            },
-            {
-              name: "ticketId",
-              type: "uint256",
-              internalType: "uint256",
-            },
-          ],
-          outputs: [
-            {
-              name: "",
-              type: "tuple",
-              internalType: "struct TicketVerification",
-              components: [
-                {
-                  name: "eventName",
-                  type: "string",
-                  internalType: "string",
-                },
-                {
-                  name: "eventStartTime",
-                  type: "uint256",
-                  internalType: "uint256",
-                },
-                {
-                  name: "ticketId",
-                  type: "uint256",
-                  internalType: "uint256",
-                },
-                {
-                  name: "eventLocation",
-                  type: "string",
-                  internalType: "string",
-                },
-                {
-                  name: "isVerified",
-                  type: "bool",
-                  internalType: "bool",
-                },
-              ],
             },
           ],
           stateMutability: "view",
@@ -615,12 +546,12 @@ const deployedContracts = {
         },
         {
           type: "function",
-          name: "buyTikcet",
+          name: "buyTicket",
           inputs: [
             {
-              name: "picEncodingURL",
-              type: "string",
-              internalType: "string",
+              name: "picEncodingId",
+              type: "uint256",
+              internalType: "uint256",
             },
           ],
           outputs: [],
@@ -698,6 +629,19 @@ const deployedContracts = {
               name: "",
               type: "address",
               internalType: "address",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "getPicEncodingIds",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint256[]",
+              internalType: "uint256[]",
             },
           ],
           stateMutability: "view",

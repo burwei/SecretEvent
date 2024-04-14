@@ -28,7 +28,7 @@ contract DeployScript is ScaffoldETHDeploy {
             )
         );
         vm.stopBroadcast();
-        vm.startBroadcast();
+        vm.startBroadcast(deployerPrivateKey);
         EventsSearcher eventSearcher = new EventsSearcher();
         console.logString(
             string.concat(
@@ -38,7 +38,7 @@ contract DeployScript is ScaffoldETHDeploy {
         );
         vm.stopBroadcast();
 
-        vm.startBroadcast();
+        vm.startBroadcast(deployerPrivateKey);
         User user = new User(
             vm.addr(deployerPrivateKey),
             address(eventSearcher)
@@ -48,7 +48,7 @@ contract DeployScript is ScaffoldETHDeploy {
         );
         vm.stopBroadcast();
 
-        vm.startBroadcast();
+        vm.startBroadcast(deployerPrivateKey);
         address newEvent = user.createEvent(
             EventDetails(
                 1744636453,

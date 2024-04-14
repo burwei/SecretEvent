@@ -28,7 +28,7 @@ contract SecretEvent {
     uint internal nonce = 0;
     uint[] internal inviteIds;
     uint[] internal ticketIds;
-    string[] internal picEncodingURLs;
+    uint[] internal picEncodingIds;
     mapping(uint => address) internal ticketIdToAttendee;
     mapping(uint => bool) internal ticketIdToDepositRedeemed;
     EventDetails internal eventDetails;
@@ -61,14 +61,14 @@ contract SecretEvent {
         return ticketIds.length;
     }
 
-    function buyTikcet(string memory picEncodingURL) public payable {
+    function buyTicket(uint picEncodingId) public payable {
         if (msg.value < eventDetails.ticketPrice + eventDetails.depositAmount) {
             revert("Not enough money to buy ticket");
         }
         uint ticketId = random();
         ticketIds.push(ticketId);
         ticketIdToAttendee[ticketId] = msg.sender;
-        picEncodingURLs.push(picEncodingURL);
+        picEncodingIds.push(picEncodingId);
     }
 
     function verifyTicket(uint ticketId) public view returns (TicketVerification memory) {
@@ -106,6 +106,10 @@ contract SecretEvent {
     function seizeDeposit(uint ticketId) public {
         // set redeemed to true so it can't be redeemed
         ticketIdToDepositRedeemed[ticketId] = true;
+    }
+
+    function getPicEncodingIds() public view returns (uint[] memory) {
+        return picEncodingIds;
     }
 
     function random() public returns (uint) {

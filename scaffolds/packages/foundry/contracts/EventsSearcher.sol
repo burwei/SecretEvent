@@ -33,20 +33,4 @@ contract EventsSearcher {
         SecretEventInterface secretEvent = SecretEventInterface(eventAddress);
         return secretEvent.getEventDetails();
     }
-
-    function buyTicket(
-        address eventAddress,
-        string memory picEncodingURL
-    ) public payable {
-        SecretEventInterface secretEvent = SecretEventInterface(eventAddress);
-        secretEvent.buyTikcet(picEncodingURL);
-    }
-
-    function verifyTicket(
-        address eventAddress,
-        uint ticketId
-    ) public view returns (TicketVerification memory) {
-        SecretEventInterface secretEvent = SecretEventInterface(eventAddress);
-        return secretEvent.verifyTicket(ticketId);
-    }
 }
