@@ -17,6 +17,14 @@ contract EventsSearcher {
         }
     }
 
+    function getFirstStoredInviteId() public view returns (uint) {
+        return storedInviteIds[0];
+    }
+
+    function getStoredInviteIds() public view returns (uint[] memory) {
+        return storedInviteIds;
+    }
+
     function getEventAddressFromInvite(
         uint inviteId
     ) public view returns (address) {

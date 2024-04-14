@@ -18,49 +18,89 @@ contract DeployScript is ScaffoldETHDeploy {
             );
         }
         vm.startBroadcast(deployerPrivateKey);
-        YourContract yourContract =
-            new YourContract(vm.addr(deployerPrivateKey));
+        YourContract yourContract = new YourContract(
+            vm.addr(deployerPrivateKey)
+        );
         console.logString(
             string.concat(
-                "YourContract deployed at: ", vm.toString(address(yourContract))
+                "YourContract deployed at: ",
+                vm.toString(address(yourContract))
             )
         );
-        EventsSearcher eventSearcher =
-            new EventsSearcher();
+        vm.stopBroadcast();
+        vm.startBroadcast();
+        EventsSearcher eventSearcher = new EventsSearcher();
         console.logString(
             string.concat(
-                "EventsSearcher deployed at: ", vm.toString(address(eventSearcher))
+                "EventsSearcher deployed at: ",
+                vm.toString(address(eventSearcher))
             )
         );
-        User user =
-            new User(
-                vm.addr(deployerPrivateKey),
-                address(eventSearcher)
-            );
+        vm.stopBroadcast();
+
+        vm.startBroadcast();
+        User user = new User(
+            vm.addr(deployerPrivateKey),
+            address(eventSearcher)
+        );
         console.logString(
-            string.concat(
-                "User deployed at: ", vm.toString(address(user))
-            )
-        ); 
-        SecretEvent secretEvent =
-            new SecretEvent(
-                EventDetails(
-                    1744636453,
-                    100,
-                    1744722853,
-                    50,
-                    25,
-                    "ETHDam drinking party",
-                    "Amsterdam central station"
-                ),
-                address(user)
-            );
-        console.logString(
-            string.concat(
-                "SecretEvent deployed at: ", vm.toString(address(secretEvent))
+            string.concat("User deployed at: ", vm.toString(address(user)))
+        );
+        vm.stopBroadcast();
+
+        vm.startBroadcast();
+        address newEvent = user.createEvent(
+            EventDetails(
+                1744636453,
+                10 ether,
+                1744722853,
+                5 ether,
+                5,
+                "ETHDam drinking party",
+                "Amsterdam central station"
             )
         );
-        
+        console.logString(
+            string.concat(
+                "User created event at: ",
+                vm.toString(address(newEvent))
+            )
+        );
+
+        address fetchedEventAddr = eventSearcher.getEventAddressFromInvite(
+            eventSearcher.getFirstStoredInviteId()
+        );
+        console.logString(
+            string.concat(
+                "EventsSearcher get first invite: ",
+                vm.toString(eventSearcher.getFirstStoredInviteId())
+            )
+        );
+        console.logString(
+            string.concat(
+                "EventsSearcher get eventArrd from invite: ",
+                vm.toString(fetchedEventAddr)
+            )
+        );
+
+        SecretEvent secretEvent = new SecretEvent(
+            EventDetails(
+                1744636453,
+                100,
+                1744722853,
+                50,
+                5,
+                "ETHDam drinking party",
+                "Amsterdam central station"
+            ),
+            address(user.getOwner())
+        );
+        console.logString(
+            string.concat(
+                "SecretEvent deployed at: ",
+                vm.toString(address(secretEvent))
+            )
+        );
         vm.stopBroadcast();
 
         /**

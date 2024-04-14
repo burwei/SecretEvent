@@ -30,6 +30,14 @@ contract User {
     Ticket[] internal tickets;
     MyOwnEvent[] internal myOwnEvent;
 
+    function getOwner() public view returns (address) {
+        return owner;
+    }
+
+    function getEventSearcherAddr() public view returns (address) {
+        return eventSearcherAddr;
+    }
+
     constructor(address _owner, address _eventSearcherAddr) {
         owner = _owner;
         eventSearcherAddr = _eventSearcherAddr;

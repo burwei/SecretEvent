@@ -44,6 +44,10 @@ contract SecretEvent {
         }
     }
 
+    function getOwner() public view returns (address) {
+        return owner;
+    }
+
     function getInviteIds() public view returns (uint[] memory) {
         return inviteIds;
     }
@@ -104,6 +108,6 @@ contract SecretEvent {
         return
             uint(
                 keccak256(abi.encodePacked(block.timestamp, msg.sender, nonce))
-            );
+            ) % 10000;
     }
 }

@@ -7,7 +7,7 @@ import { GenericContractsDeclaration } from "~~/utils/scaffold-eth/contract";
 const deployedContracts = {
   31337: {
     YourContract: {
-      address: "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+      address: "0x0B306BF915C4d645ff596e518fAf3F9669b97016",
       abi: [
         {
           type: "constructor",
@@ -150,7 +150,7 @@ const deployedContracts = {
       inheritedFunctions: {},
     },
     EventsSearcher: {
-      address: "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512",
+      address: "0x959922bE3CAee4b8Cd9a407cc3ac1C251C2007B1",
       abi: [
         {
           type: "function",
@@ -189,11 +189,56 @@ const deployedContracts = {
           ],
           stateMutability: "view",
         },
+        {
+          type: "function",
+          name: "getFirstStoredInviteId",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "getStoredInviteIds",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "uint256[]",
+              internalType: "uint256[]",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "storedInviteIds",
+          inputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          outputs: [
+            {
+              name: "",
+              type: "uint256",
+              internalType: "uint256",
+            },
+          ],
+          stateMutability: "view",
+        },
       ],
       inheritedFunctions: {},
     },
     User: {
-      address: "0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0",
+      address: "0x9A9f2CCfdE556A7E9Ff0848998Aa4a0CFD8863AE",
       abi: [
         {
           type: "constructor",
@@ -327,13 +372,56 @@ const deployedContracts = {
         },
         {
           type: "function",
-          name: "getInvites",
+          name: "getEventSearcherAddr",
           inputs: [],
           outputs: [
             {
               name: "",
-              type: "uint256[]",
-              internalType: "uint256[]",
+              type: "address",
+              internalType: "address",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "getMyOwnEvent",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "tuple[]",
+              internalType: "struct MyOwnEvent[]",
+              components: [
+                {
+                  name: "eventAddress",
+                  type: "address",
+                  internalType: "address",
+                },
+                {
+                  name: "eventStartTime",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "eventName",
+                  type: "string",
+                  internalType: "string",
+                },
+              ],
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "getOwner",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address",
             },
           ],
           stateMutability: "view",
@@ -377,7 +465,7 @@ const deployedContracts = {
       inheritedFunctions: {},
     },
     SecretEvent: {
-      address: "0xCf7Ed3AccA5a467e9e704C703E8D87F634fB0Fc9",
+      address: "0x3Aa5ebB10DC797CAC828524e59A333d0A371443c",
       abi: [
         {
           type: "constructor",
@@ -425,12 +513,7 @@ const deployedContracts = {
               ],
             },
             {
-              name: "orginizer",
-              type: "address",
-              internalType: "address",
-            },
-            {
-              name: "eventsSearcherAddr",
+              name: "_orginizer",
               type: "address",
               internalType: "address",
             },
@@ -502,6 +585,19 @@ const deployedContracts = {
               name: "",
               type: "uint256[]",
               internalType: "uint256[]",
+            },
+          ],
+          stateMutability: "view",
+        },
+        {
+          type: "function",
+          name: "getOwner",
+          inputs: [],
+          outputs: [
+            {
+              name: "",
+              type: "address",
+              internalType: "address",
             },
           ],
           stateMutability: "view",
