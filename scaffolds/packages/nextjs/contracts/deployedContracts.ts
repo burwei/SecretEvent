@@ -628,43 +628,50 @@ const deployedContracts = {
         },
         {
           type: "function",
-          name: "eventDetails",
+          name: "getEventDetails",
           inputs: [],
           outputs: [
             {
-              name: "eventStartTime",
-              type: "uint256",
-              internalType: "uint256",
-            },
-            {
-              name: "ticketPrice",
-              type: "uint256",
-              internalType: "uint256",
-            },
-            {
-              name: "depositReleaseTime",
-              type: "uint256",
-              internalType: "uint256",
-            },
-            {
-              name: "depositAmount",
-              type: "uint256",
-              internalType: "uint256",
-            },
-            {
-              name: "invitationAmount",
-              type: "uint256",
-              internalType: "uint256",
-            },
-            {
-              name: "eventName",
-              type: "string",
-              internalType: "string",
-            },
-            {
-              name: "eventLocation",
-              type: "string",
-              internalType: "string",
+              name: "",
+              type: "tuple",
+              internalType: "struct EventDetails",
+              components: [
+                {
+                  name: "eventStartTime",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "ticketPrice",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "depositReleaseTime",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "depositAmount",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "invitationAmount",
+                  type: "uint256",
+                  internalType: "uint256",
+                },
+                {
+                  name: "eventName",
+                  type: "string",
+                  internalType: "string",
+                },
+                {
+                  name: "eventLocation",
+                  type: "string",
+                  internalType: "string",
+                },
+              ],
             },
           ],
           stateMutability: "view",
