@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.24;
 
+import "sapphire-paratime/contracts/contracts/Sapphire.sol";
 import "./SecretEvent.sol";
 
 contract EventsSearcher {
